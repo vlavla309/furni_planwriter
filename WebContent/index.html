@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Plan Writer - FurniFit</title>
+
+
+<!-- css -->
+<link rel="stylesheet" type="text/css" href="stylesheet/style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+  
+<!-- Javascript -->
+<script type="text/javascript" src="js/writer.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+<script>
+  $( function() {
+    $( "#tabs" ).tabs({
+      beforeLoad: function( event, ui ) {
+        ui.jqXHR.fail(function() {
+          ui.panel.html(
+            "Couldn't load this tab. We'll try to fix this as soon as possible. " +
+            "If this wouldn't be a demo." );
+        });
+      }
+    });
+  } );
+  </script>
+
+
+<script>
+  $( function() {
+    // Set effect from select menu value
+    $( "#rightToggleBtn" ).on( "click", function() {
+    	$( "#tabs" ).toggle("slow", "swing", changeDirection(this));
+    });
+  } );
+  
+  function changeDirection(target){
+	  var val=$(target).text();
+	  if(val==">"){
+		  $(target).text("<");
+	  }else {
+		  $(target).text(">");
+	  }
+	  console.log(val);
+  }
+  </script>
+</head>
+<body>
+<div id="wrap">
+	<!-- header 시작 -->
+	<div id="header">
+		<nav id="headerNav">
+			<div id="headerLogo">
+			<a href="#">FurniFit</a>
+			</div>
+			<div id="headerMenuWrap">
+				<ul id="headerMenuLeft">
+					<li><a href="#">menu1</a></li>
+					<li><a href="#">menu2</a></li>
+					<li><a href="#">menu3</a></li>
+					<li><a href="#">menu4</a></li>
+				</ul>
+				
+				<ul id="headerMenuRight">
+					<li class="exit"><a href="#">EXIT</a></li>
+				</ul>
+			</div>
+			
+		</nav>
+		
+		<!-- left sidebar 시작 -->
+		<div class="sidebar">
+			<div id="leftSidebarWrap">
+				<div id="sidemenu">
+					<div id="leftToggle">
+						<button id="leftToggleBtn">></button>
+					</div>
+					<div id="planitems">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- left sidebar 끝	 -->
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- right sidebar 시작 -->
+		<div class="sidebar">
+			<div id="rightSidebarWrap">
+				<div id="sidemenu">
+					<div id="rightToggle">
+						<button id="rightToggleBtn">></button>
+					</div>
+					<div id="tabs">
+						<ul>
+							<li><a href="#tab1">옷장</a></li>
+							<li><a href="ajax/content1.html">침대</a></li>
+							<li><a href="ajax/content2.html">식탁</a></li>
+ 						</ul>
+						<div id="tab1" class="tabContent">
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
+								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
+								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+								ullamcorper leo. Vivamus sed magna quis ligula eleifend
+								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
+								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
+								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
+								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
+								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+								ullamcorper leo. Vivamus sed magna quis ligula eleifend
+								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
+								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
+								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
+								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
+								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+								ullamcorper leo. Vivamus sed magna quis ligula eleifend
+								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
+								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
+								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
+								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
+								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+								ullamcorper leo. Vivamus sed magna quis ligula eleifend
+								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
+								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
+								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
+								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
+								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
+								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
+								ullamcorper leo. Vivamus sed magna quis ligula eleifend
+								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
+								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
+								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- right sidebar 끝-->	
+	</div>
+	<!-- header 끝 -->
+
+
+	
+	<!-- content 시작 -->
+	<div id="content">
+		<div id="editorWrap">
+			<div id="editor">
+			  
+			</div>
+		</div>
+	</div>
+	<!-- content 끝 -->
+
+
+	<!-- footer 시작 -->
+	<div id="footer">
+		여기는 풋터
+	</div>
+	<!-- footer 끝 -->
+</div>	
+</body>
+</html>

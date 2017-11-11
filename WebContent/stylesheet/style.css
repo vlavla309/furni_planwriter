@@ -1,0 +1,113 @@
+@charset "utf-8";
+
+*{
+	font-size:16px;
+	margin : 0;
+	padding : 0;
+}
+
+a{
+	text-decoration: none;
+}
+#wrap{
+	heigth:100%;
+	width:100%;
+}
+#header{
+	width:100%;
+	position : fixed;
+}
+
+#headerMenuWrap{
+	width:100%;
+}
+
+#headerNav{
+	background-color:#F7F7F7;
+	display: flex;
+	border-bottom: 1px solid #e7e7e7;
+	box-shadow: 0px 1px 10px 0px #d0d0d0;
+}
+
+#headerLogo{
+	float:left;
+	padding :0.5rem 1rem 0.5rem 1rem;
+	background: #78cae9; 
+	color:white;
+}
+#headerLogo a{
+	color:white;
+}
+
+#headerMenuLeft{
+	float:left;
+}
+
+#headerMenuRight{
+	float:right;
+}
+
+#headerMenuLeft li, #headerMenuRight li{
+	padding :0.5rem;
+	list-style: none;
+	display: inline-block;
+	border-left: 1px solid #e7e7e7;
+}
+
+#headerMenuRight .exit{
+	float:right;
+	background-color: red;
+	color:white;
+}
+
+#headerMenuRight .exit a{
+	color:white;
+}
+
+#leftSidebarWrap{
+	height:500px;
+	position:fixed;
+	left:0px;
+}
+
+
+#rightSidebarWrap{
+	height:500px;
+	position:fixed;
+	right:0px;
+}
+
+#sidemenu{
+	display:inline-flex;
+	max-width: 20rem;
+	margin-top:0.5em;
+}
+
+#rightToggle{
+	height:100%;
+	float:right;
+}
+
+#rightToggleBtn{
+	padding : 1rem;
+}
+
+#tabs{
+	float:right;
+}
+
+.tabContent{
+	max-height: 30em;
+	min-height: 30em;
+	overflow: auto;
+}
+
+#editor{
+	background-image:url("../images/background.jpg");
+	width:100%;
+	height:900px;
+}
+
+#footer{
+	background-color:blue;
+}

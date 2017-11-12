@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+*{
+	font-size:16px;
+	margin : 0;
+	padding : 0;
+}
+
+#editor{
+	background: grey;
+}
+
+.circle{
+	z-index:10;
+}
+

@@ -6,6 +6,8 @@
 	padding : 0;
 }
 
+
+
 a{
 	text-decoration: none;
 }
@@ -64,24 +66,43 @@ a{
 	color:white;
 }
 
+#sidemenu{
+	display:inline-flex;
+	max-width: 25rem;
+	height:100%;
+}
+
 #leftSidebarWrap{
-	height:500px;
+	height:100%;
 	position:fixed;
 	left:0px;
 }
 
+#planitems{
+	background:white;
+	height:100%;
+	/* display:none; */	
+}
+
+.planitem{
+	border: 1px solid black;
+	background :white;
+	margin:1em;
+	width:120px;
+	height:90px;
+}
+
+#leftToggle{
+	height:100%;
+	float:left;
+}
 
 #rightSidebarWrap{
-	height:500px;
+	height:100%;
 	position:fixed;
 	right:0px;
 }
 
-#sidemenu{
-	display:inline-flex;
-	max-width: 20rem;
-	margin-top:0.5em;
-}
 
 #rightToggle{
 	height:100%;
@@ -89,7 +110,10 @@ a{
 }
 
 #rightToggleBtn{
-	padding : 1rem;
+	padding : 0.5rem;
+	background: #78cae9;
+	border :0;
+	color :white;
 }
 
 #tabs{
@@ -103,11 +127,14 @@ a{
 }
 
 #editor{
-	background-image:url("../images/background.jpg");
+	z-index:-10;
 	width:100%;
-	height:900px;
+	height:700px;
 }
 
 #footer{
+	width:100%;
+	bottom:0px;
+	position:fixed;
 	background-color:blue;
 }

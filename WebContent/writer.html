@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<link  rel="stylesheet" type="text/css" href="stylesheet/writer.css"/>
+
+<script type="text/javascript" src="js/raphael.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+//var paper=Raphael(50,50,1000,1000);
+
+$( document ).ready(function() {
+	var canvas=Raphael(document.getElementById("editor"),1000,1000);
+	$("svg").attr("class", "svvg");
+	
+	var circle = canvas.circle(50, 40, 10);
+	// Sets the fill attribute of the circle to red (#f00)
+	circle.attr("fill", "#f00");
+
+	// Sets the stroke attribute of the circle to white
+	circle.attr("stroke", "#fff");
+	circle.attr("class", "circle");
+	
+	$(".circle").on("click",function(){
+		var target=$(this);
+		console.log("haha" +target);
+		
+	})
+});
+
+</script>
+</head>
+<body>
+	<div id="editor"></div>
+</body>
+</html>

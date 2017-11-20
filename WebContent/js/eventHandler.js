@@ -4,7 +4,7 @@ function select(target){
 	var id=target.id;
 	selectedId=id;
 	var produtId=target.data("productId");
-	console.log("The Seleted id:"+id+" pid:"+produtId);
+	//console.log("The Seleted id:"+id+" pid:"+produtId);
 	target.attr("stroke-width", 4).attr("stroke-opacity", 0.6);
 }
 
@@ -45,7 +45,7 @@ function dragMove(dx, dy) {
 
 function dragUp() {
 	this.attr({opacity: 1});
-	
+	checkCollision(this);
 	//if (this.attr("y") < 60 && this.attr("x") < 60)
 	//this.attr({fill: "#AEAEAE"});   
 	//this.attr({x: curX, y: curY});
@@ -74,13 +74,3 @@ function checkOverlap(target){
 	});
 	return isOverlap;
 }
-
-function getCoordinates(target){
-	var coordinates= new Array();
-	coordinates[0] = [target.attr("x"), target.attr("y")];
-	coordinates[1] = [target.attr("x") + target.attr("width"), target.attr("y")];
-	coordinates[2] = [target.attr("x"), target.attr("y") + target.attr("height")];
-	coordinates[3] = [target.attr("x") + target.attr("width"), target.attr("y") + target.attr("height")];
-	return coordinates;
-}
-

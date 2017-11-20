@@ -2,17 +2,13 @@ var curX, curY;
 var canvas;
 var cursorState="none";
 var selectedId=0;
-
+var allFurniture;
 $( document ).ready(function(){
 	/*가구 배치도 스케치북 화면 생성*/
 	canvas = Raphael(document.getElementById("editor"), 500, 500);
 
 	var fur=makeFurniture("bed", 2039);
-	var matrix=getRotateMatrix(fur, 45);
-	var trans=Raphael.parseTransformString("..."+matrix.toTransformString());
 	
-	fur.transform(trans);
-	var fur2=makeFurniture("bed", 20910);
 });
 
 

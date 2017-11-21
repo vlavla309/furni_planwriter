@@ -1,11 +1,16 @@
 @charset "utf-8";
 
+
+
 *{
 	font-size:16px;
 	margin : 0;
 	padding : 0;
 }
 
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
 
 
 a{
@@ -116,6 +121,15 @@ a{
 	color :white;
 }
 
+table {
+	font-size: 1em;
+}
+
+.ui-draggable, .ui-droppable {
+	background-position: top;
+}
+
+
 #tabs{
 	float:right;
 }
@@ -126,7 +140,8 @@ a{
 	overflow: auto;
 }
 
-#editor{
+#editorWrap{
+	top:60px; 
 	z-index:-10;
 	width:100%;
 	height:700px;

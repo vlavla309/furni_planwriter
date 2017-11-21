@@ -1,76 +1,80 @@
+
 /*------------- 가구 클릭 이벤트 핸들러 시작!--------------*/
 function select(target){
-	unSelectAll(target);
-	var id=target.id;
-	selectedId=id;
-	var produtId=target.data("productId");
-	//console.log("The Seleted id:"+id+" pid:"+produtId);
-	target.attr("stroke-width", 4).attr("stroke-opacity", 0.6);
+	selectedElem=target;
+	selectedViewbox=target.parent().parent(); // 선택된 가구의 뷰박스 획득
+	target.attr({
+		strokeWidth: 4 // CamelCase...
+	}); 
+
+	$("#footer").toggle();
 }
 
-function unSelectAll(target){
-	canvas.forEach(function(elem){
-		if(elem.attr("class")=="furniture"){
-			elem.attr("stroke-width", 1).attr("stroke-opacity", 1);
-		}
-	})
+function unSelectAll(){
+	selectedElem=null;
+	setFurniture.attr({
+		strokeWidth: 0 // CamelCase...
+	});
+
+
 }
+
+function hIn(){
+	this.attr("strokeWidth", 4);
+}
+
+function hOut(){
+	if(selectedElem!=this)
+		this.attr("strokeWidth", 0);
+}
+
 
 
 /*------------- 드래그 이벤트 핸들러 시작!--------------*/
-function dragStart() {
-	curX=this.attr("x");
-	curY=this.attr("y");
-	/*this.ox = this.attr("x");
-	this.oy = this.attr("y");*/
-	this.ox = 0;
-	this.oy = 0;
-	this.attr({opacity: 0.5});
-	//if (this.attr("y") < 60 &&  this.attr("x") < 60)
-	//this.attr({fill: "#000"});        
-};
 
-function dragMove(dx, dy) {
-	//this.transform("...T" + x  + "," + y);
-	//this.attr({x: this.ox + dx, y: this.oy + dy}); 
+var save;
+function dragMove(dx, dy, x, y, e) {
+	var m = selectedViewbox.transform().localMatrix; 
+	var mx=dx;
+	var my=dy;
+    if(m){
+    	mx = dx/m.a;
+    	my = dy/m.d;
+    }
+	// 드래그시 작업
+	this.attr({
+		transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
+	});
+}
+function dragStart(x,y,e) {
+	canvas.paper.zpd('toggle');
+	selectedViewbox=this.parent().parent(); //선택된 가구의 에디터 정보 가져오기
+	origTransform = this.transform().local;  //기존 트랜스폼 명령
+}
 
-	var x = dx - this.ox,
-	y = dy - this.oy;
-	this.transform("...T" + x  + "," + y);
-	this.ox = dx;
-	this.oy = dy;
-	//console.log(this.ox + " "+this.oy);
-	//this.attr({x: x, y: y}); 
-};
-
-function dragUp() {
-	this.attr({opacity: 1});
-	checkCollision(this);
-	//if (this.attr("y") < 60 && this.attr("x") < 60)
-	//this.attr({fill: "#AEAEAE"});   
-	//this.attr({x: curX, y: curY});
-};   
+function dragDrop(x,y) {
+	canvas.paper.zpd('toggle');
+}
 /*------------- 드래그 이벤트 핸들러 끝!--------------*/
+
+
+
+/*------------뷰 줌인, 아웃 핸들러 시작 -------------------*/
+function zoomTo(target, scale){
+	
+	origTransform=target.transform().local;
+	target.attr({
+		transform: origTransform + (origTransform ? "S" : "s") + [scale, scale]
+	});
+}
+/*------------뷰 줌인, 아웃 핸들러 끝~ -------------------*/
+
+
 
 /* 겹치는지 체크(미완) */
 function checkOverlap(target){
 	var isOverlap=false;
 	var coordinates=getCoordinates(target);
 
-	canvas.forEach(function(elem) {
-		if(elem != target){
-			var range= getRange(elem);
-
-			coordinates.forEach(function(pos, j) {
-				if((range[0][0]<=pos[0] && pos[0]<=range[0][1])
-						&&(range[1][0]<=pos[1] && pos[1]<=range[1][1])
-				){
-					//console.log("Overlapped!");
-					isOverlap=true;
-					return true;
-				}
-			});
-		}
-	});
 	return isOverlap;
 }

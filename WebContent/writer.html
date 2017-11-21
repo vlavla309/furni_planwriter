@@ -5,9 +5,8 @@
 <meta charset="utf-8">
 <link  rel="stylesheet" type="text/css" href="stylesheet/writer.css"/>
 
-<script type="text/javascript" src="js/raphael.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="js/snap.svg.js"></script>
+<script src="js/jquery-1.12.4.js"></script>
 
 <script type="text/javascript" src="js/writer.js"></script>
 <script type="text/javascript" src="js/calc.js"></script>
@@ -15,18 +14,23 @@
 <script type="text/javascript" src="js/eventRegist.js"></script>
 <script type="text/javascript" src="js/eventHandler.js"></script>
 <script type="text/javascript" src="js/Coordinate.js"></script>
+<script type="text/javascript" src="js/snap.svg.zpd.js"></script>
+
 </head>
 <body>
-	<input id="x" type="number"/>
-	<input id="y" type="number"/>
-	<input id="width" type="number"/>
-	<input id="height" type="number"/>
-	<button id="crtBtn">사각형하나!!</button><br>
+	<button id="crtBtn">침대하나</button><br>
 	
 	<input id="radius" type="number"/>
 	<button id="rotateBtn">회전!!</button>
-	
-	<div id="editor"></div>
+	<button id="deleteBtn">삭제</button>
+	<div>
+		<div id="editorContainer">
+			<svg width="100%" height="100%">
+				<g class="editor">
+				</g>
+			</svg>
+		</div>
+	</div>
 	<div id="footer">
 	여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>
 	</div>

@@ -8,23 +8,23 @@
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="stylesheet/style.css">
 <link rel="stylesheet" type="text/css" href="stylesheet/writer.css">
-<link rel="stylesheet" href="stylesheet/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="stylesheet/jquery-ui.css">
   
 <!-- Javascript -->
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/planwriter.js"></script>
+
+<script type="text/javascript" src="js/planwriter.js"></script>
 
 <script type="text/javascript" src="js/snap.svg.js"></script>
 
-
-<script type="text/javascript" src="js/writer.js"></script>
+<script type="text/javascript" src="js/snap.svg.zpd.js"></script>
 <script type="text/javascript" src="js/calc.js"></script>
 <script type="text/javascript" src="js/function.js"></script>
 <script type="text/javascript" src="js/eventRegist.js"></script>
 <script type="text/javascript" src="js/eventHandler.js"></script>
-<script type="text/javascript" src="js/Coordinate.js"></script>
-<script type="text/javascript" src="js/snap.svg.zpd.js"></script>
+<script type="text/javascript" src="js/Editor.js"></script>
+
 
 
 </head>
@@ -38,11 +38,11 @@
 			</div>
 			<div id="headerMenuWrap">
 				<ul id="headerMenuLeft">
-					<li><a href="#">저장</a></li>
+					<li><a id=saveBtn href="#">저장</a></li>
 					<li><a href="#">menu2</a></li>
 					<li><a href="#">menu3</a></li>
 					<li><a href="#">menu4</a></li>
-					<li><a id=crtBtn href="#">방하나</a></li>
+					<li><a id=crtBtn href="#">침대하나</a></li>
 					<li><a id=rotateBtn href="#">회전</a></li>
 					<li><a id=deleteBtn href="#">삭제</a></li>
 					
@@ -59,14 +59,15 @@
 		<div class="sidebar">
 			<div id="leftSidebarWrap">
 				<div id="sidemenu">
-					<div id="planitems">
-					
-						<div class="planitem"></div>
-						<div class="planitem"></div>
-						<div class="planitem"></div>
+					<div id="planitemTabs">
+				       <ul id="planitems">
+				       <!-- 샘플 ㅎㅎ -->
+						<!-- <li><div class='planitem'><a href='1'>내방</a></div></li> -->
+					  </ul>
+					  <button id="newPlanBtn">Add Plan</button>
 					</div>
 					<div id="leftToggle">
-						<button id="leftToggleBtn">></button>
+						<button id="leftToggleBtn"><</button>
 					</div>
 				</div>
 			</div>
@@ -87,15 +88,11 @@
 							<li><a href="ajax/content2.html">식탁</a></li>
  						</ul>
 						<div id="tab1" class="tabContent">
-							<p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo
-								a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet
-								mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa
-								et lorem. Mauris dapibus lacus auctor risus. Aenean tempor
-								ullamcorper leo. Vivamus sed magna quis ligula eleifend
-								adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum.
-								Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede
-								varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
-								Phasellus ipsum. Nunc tristique tempus lectus.</p>
+							<div class="productWrap">
+								<div class="product">
+									
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -104,18 +101,18 @@
 		<!-- right sidebar 끝-->	
 	</div>
 	<!-- header 끝 -->
-
-
 	
 	<!-- content 시작 -->
 	<div id="content">
 		<div id="editorWrap">
-			<div id="editorContainer">
+		
+			<!-- 샘플 ㅎㅎ -->
+			<!-- <div id="editorContainer-1" class="editorContainer active">
 			<svg width="100%" height="100%">
 				<g class="editor">
 				</g>
 			</svg>
-		</div>
+			</div> -->
 		</div>
 	</div>
 	<!-- content 끝 -->
@@ -126,6 +123,23 @@
 		여기는 풋터
 	</div>
 	<!-- footer 끝 -->
+	
+	
+	<!-- 새 배치도 추가 폼 -->
+	<div id="newPlanForm" title="새 배치도 추가">
+  		<form>
+    		<fieldset class="ui-helper-reset">
+      			<label for="tab_title">배치도이름</label><br>
+      			<input type="text" name="planName" id="planName" placeholder='배치도 이름을 입력해주세요' class="ui-widget-content ui-corner-all" required>
+      			<br><br>
+      			<label for="tab_title">방의 크기</label><br>
+      			<input type="text" name="planWidth" id="planWidth" placeholder='방의 가로길이를 입력해주세요' class="ui-widget-content ui-corner-all" required>
+      			<input type="text" name="planHeight" id="planHeight" placeholder='방의 세로길이를 입력해주세요' class="ui-widget-content ui-corner-all" required>
+      			<input type="text" name="planLength" id="planLength" placeholder='방의 높이를 입력해주세요' class="ui-widget-content ui-corner-all" required>
+    		</fieldset>
+  		</form>
+	</div>
+	<!-- 새 배치도 추가 폼 -->
 </div>	
 </body>
 </html>

@@ -12,11 +12,9 @@ function select(target){
 
 function unSelectAll(){
 	selectedElem=null;
-	setFurniture.attr({
+	curEditor.furnitures.attr({
 		strokeWidth: 0 // CamelCase...
 	});
-
-
 }
 
 function hIn(){
@@ -31,8 +29,12 @@ function hOut(){
 
 
 /*------------- 드래그 이벤트 핸들러 시작!--------------*/
+function dragStart(x,y,e) {
+	curEditor.canvas.paper.zpd('toggle');
+	selectedViewbox=this.parent().parent(); //선택된 가구의 에디터 정보 가져오기
+	origTransform = this.transform().local;  //기존 트랜스폼 명령
+}
 
-var save;
 function dragMove(dx, dy, x, y, e) {
 	var m = selectedViewbox.transform().localMatrix; 
 	var mx=dx;
@@ -46,35 +48,10 @@ function dragMove(dx, dy, x, y, e) {
 		transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
 	});
 }
-function dragStart(x,y,e) {
-	canvas.paper.zpd('toggle');
-	selectedViewbox=this.parent().parent(); //선택된 가구의 에디터 정보 가져오기
-	origTransform = this.transform().local;  //기존 트랜스폼 명령
-}
 
 function dragDrop(x,y) {
-	canvas.paper.zpd('toggle');
+	curEditor.canvas.paper.zpd('toggle');
 }
 /*------------- 드래그 이벤트 핸들러 끝!--------------*/
 
 
-
-/*------------뷰 줌인, 아웃 핸들러 시작 -------------------*/
-function zoomTo(target, scale){
-	
-	origTransform=target.transform().local;
-	target.attr({
-		transform: origTransform + (origTransform ? "S" : "s") + [scale, scale]
-	});
-}
-/*------------뷰 줌인, 아웃 핸들러 끝~ -------------------*/
-
-
-
-/* 겹치는지 체크(미완) */
-function checkOverlap(target){
-	var isOverlap=false;
-	var coordinates=getCoordinates(target);
-
-	return isOverlap;
-}

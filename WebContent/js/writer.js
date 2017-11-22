@@ -1,21 +1,21 @@
-var curX, curY;
-var canvas;
+/*var curX, curY;
+
 var setFurniture;
 var cursorState="none";
 var selectedElem;
 var selectedViewbox;
 var allFurniture;
-var zoomScale=0.2; //0.1배씩
+
 $( document ).ready(function(){
 	
-	/*가구 배치도 스케치북 화면 생성*/
-	canvas = Snap(".editor");
-	
+	가구 배치도 스케치북 화면 생성
+	var canvas = Snap("#editorContainer-1 .editor");
+	//console.log(canvas);
 	setFurniture = Snap.set();
 	
 	 var applyZpd = function() {
 		 canvas.paper.zpd({
-			 zoomScale : zoomScale,
+			 zoomScale : ZOOM_SCALE,
 			 zoomThreshold: 1.1,
 			 drag: false
 		 });
@@ -23,8 +23,10 @@ $( document ).ready(function(){
 
      // run initializer
      applyZpd();
+      
      
-     makeRoom(700, 500, 200);	
+     //방 생성!!
+     //makeRoom(700, 500, 200);	
      
 });
 
@@ -38,4 +40,4 @@ function makeRoom(width, height, length){
 	});
 	rect.undrag();
 	return room;
-}
+}*/

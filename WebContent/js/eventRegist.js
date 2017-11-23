@@ -1,5 +1,6 @@
 $( document ).ready(function(){
 	$("#saveBtn").on("click", function(){
+		unSelectAll();
 		var data=curEditor.canvas.paper.toDataURL();
 		console.log(data);
 	});

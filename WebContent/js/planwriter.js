@@ -107,6 +107,7 @@ function addPlanItem(){
 	var editor=new Editor();
 	editor.init(id);
 	editorList.set(id, editor);
+	editor.room(700, 700, 300);
 	return id;
 }
 

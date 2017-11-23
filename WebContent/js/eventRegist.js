@@ -17,6 +17,7 @@ $( document ).ready(function(){
 	$("#deleteBtn").on("click", function(){
 		console.log("가구 삭제");
 		if(selectedElem){
+			curEditor.furnitures.exclude(selectedElem);
 			console.log(selectedElem);
 			selectedElem.remove();
 			selectedElem=null;

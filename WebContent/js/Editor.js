@@ -28,11 +28,10 @@ Editor.prototype.init = function (id){
 /* 배치도에 새 가구 생성 */
 Editor.prototype.furniture= function(x,y,type, productId){
 		var furniture;
-		var polygon=this.canvas.polygon([x,y, x+90,y,  x+90,y+140, x,y+140]).attr("fill-opacity", 0);
 		var rect=this.canvas.rect(x, y, 90, 140).attr("fill", "none");
 		var image=this.canvas.image("images/bed.png", x, y ,90, 140);
 		
-		furniture=this.canvas.g(polygon,rect,image).attr({
+		furniture=this.canvas.g(rect,image).attr({
 			stroke: "#6799FF",
 			strokeWidth: 0,
 			class: "furniture"}

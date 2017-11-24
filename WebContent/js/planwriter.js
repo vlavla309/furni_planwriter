@@ -107,7 +107,11 @@ function addPlanItem(){
 	var editor=new Editor();
 	editor.init(id);
 	editorList.set(id, editor);
-	editor.room(700, 700, 300);
+	var width=$("#planWidth").val();
+	var height=$("#planHeight").val();
+	var length=$("#planLength").val();
+	
+	editor.room(width, height, length);
 	return id;
 }
 

@@ -41,8 +41,9 @@ $( function() {
 
 	// 배치도 목록 화면 영역 토글 버튼 이벤트 처리
 	$("#leftToggleBtn").on("click", function() {
-		//$("#planitems").toggle("fold", "linear", changeDirection(this));
-		$("#planitemTabs").toggle("slide", { direction: "left" }, changeDirection(this));
+		//$("#planitemsTabs").toggle("fold", "linear", changeDirection(this));
+		$("#planitemTabs").toggle(changeDirection(this));
+		//$("#planitemTabs").toggle("slide", { direction: "left" }, changeDirection(this));
 	});
 	
 	

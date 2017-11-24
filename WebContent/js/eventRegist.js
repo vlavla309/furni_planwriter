@@ -6,7 +6,8 @@ $( document ).ready(function(){
 	});
 	
 	$("#crtBtn").on("click", function(){
-		curEditor.furniture(0, 0,"bed", 2039);
+		console.log(curEditor.offsetX+" "+curEditor.offsetY);
+		curEditor.furniture(curEditor.offsetX, curEditor.offsetY,"bed", 2039);
 	});
 
 	$("#rotateBtn").on("click", function(){

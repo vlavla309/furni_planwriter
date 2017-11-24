@@ -75,6 +75,7 @@ function hasCollision(target){
 	var pathSet=Snap.set();
 
 	curEditor.furnitures.forEach(function(elem, i) {
+		console.log("1");
 		if(target!=elem){
 			pathElem=getPath(elem);
 			pathSet.push(pathElem);
@@ -99,11 +100,11 @@ function getPath(target){
 	//console.log(target);
 	var rect= target[0];
 	var m=target.transform().localMatrix;
-	var x=rect.attr("x");
-	var y=rect.attr("y");
-	var w=rect.attr("width");
-	var h=rect.attr("height");
-
+	var x=Number(rect.attr("x"));
+	var y=Number(rect.attr("y"));
+	var w=Number(rect.attr("width"));
+	var h=Number(rect.attr("height"));
+	
 	var posA=new Coordinate(m.x(x,y), m.y(x,y));
 	var posB=new Coordinate(m.x(x+w,y), m.y(x+w,y));
 	var posC=new Coordinate(m.x(x+w,y+h), m.y(x+w,y+h));
@@ -116,8 +117,8 @@ function getPath(target){
 	pathStr+=" L"+posA.x+" "+posA.y;
 
 	var path=curEditor.canvas.path(pathStr).attr({
-		fill : "none"
-			//stroke: "#000"
+		fill : "#000"
+		//stroke: "#000"
 	});
 	return path;
 }

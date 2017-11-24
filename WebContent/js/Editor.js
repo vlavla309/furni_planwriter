@@ -7,6 +7,8 @@ function Editor( ){
 	this.furnitures;
 	this.walls;
 	this.scale=1;
+	this.offsetX=80;
+	this.offsetY=80;
 }
 
 
@@ -17,7 +19,7 @@ Editor.prototype.init = function (id){
 	 var applyZpd = function() {
 		 paper.zpd({
 			 zoomscale : 0.2,
-			 zoomThreshold: 1.1,
+			 zoomThreshold: [0.4, 1.8],
 			 drag: false
 		 });
      };
@@ -40,8 +42,19 @@ Editor.prototype.room = function(width,height,length){
 	var w=width*this.scale;
 	var h=height*this.scale;
 	var wallWidth=14*this.scale;
-	
+	/*
 	var rect = this.canvas.rect(x, y, w, h).attr({
+		"fill": "none",
+		stroke: "#5D5D5D",
+		strokeWidth: 0
+	});
+	*/
+	var pathStr="M"+x+" "+y;
+	pathStr+=" L"+(x+w)+" "+y;
+	pathStr+=" L"+(x+w)+" "+(y+h);
+	pathStr+=" L"+(x)+" "+(y+h);
+	pathStr+=" L"+x+" "+y;
+	var path=this.canvas.path(pathStr).attr({
 		"fill": "none",
 		stroke: "#5D5D5D",
 		strokeWidth: 0
@@ -53,7 +66,7 @@ Editor.prototype.room = function(width,height,length){
 	var verticalGradient = this.canvas.paper.gradient("l(0, 1, 1, 1)#BDBDBD-#CFCFCF-#BDBDBD");
 	
 	//북쪽 벽
-	var pathStr="M"+x+" "+y;
+	pathStr="M"+x+" "+y;
 	pathStr+=" L"+(x+w)+" "+y;
 	pathStr+=" L"+(x+w+wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+(x-wallWidth)+" "+(y-wallWidth);
@@ -107,8 +120,9 @@ Editor.prototype.room = function(width,height,length){
 		strokeWidth: 0.5,
 		strokeOpacity : 0.9
 	});
-	//var bbox=path.getBBox();
-//	/console.log(bbox);
+	var bbox=path.getBBox();
+
+	//console.log(bbox);
 }
 
 /* 배치도에 새 가구 생성 */

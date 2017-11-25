@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Insert title here</title>
-<meta charset="utf-8">
-<link  rel="stylesheet" type="text/css" href="stylesheet/writer.css"/>
-
-<script type="text/javascript" src="js/snap.svg.js"></script>
-<script src="js/jquery-1.12.4.js"></script>
-
-<script type="text/javascript" src="js/writer.js"></script>
-<script type="text/javascript" src="js/calc.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
-<script type="text/javascript" src="js/eventRegist.js"></script>
-<script type="text/javascript" src="js/eventHandler.js"></script>
-<script type="text/javascript" src="js/Coordinate.js"></script>
-<script type="text/javascript" src="js/snap.svg.zpd.js"></script>
-
-</head>
-<body>
-	<button id="crtBtn">침대하나</button><br>
-	
-	<input id="radius" type="number"/>
-	<button id="rotateBtn">회전!!</button>
-	<button id="deleteBtn">삭제</button>
-	<div>
-		<div id="editorContainer">
-			<svg width="100%" height="100%">
-				<g class="editor">
-				</g>
-			</svg>
-		</div>
-	</div>
-	<div id="footer">
-	여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>여기는 풋터 1!!!!!!!<br>
-	</div>
-</body>
+  <head>
+    <script type="text/javascript" src="js/snap.svg.js"></script>
+    <script>
+    window.onload=function(){
+      var s = Snap("#svg");
+      var gridSize = 50;
+      var orig = {
+        x: 0,
+        y: 0
+      };
+      var block = s.rect(100, 100, 100, 100, 20, 20);
+      block.attr({
+          fill: "rgb(236, 240, 241)",
+          stroke: "#1f2c39",
+          strokeWidth: 3
+      });
+      block.drag(
+      
+        function (dx, dy, x, y, e) {
+            var xSnap = Snap.snapTo(gridSize, orig.x + dx, 100000000);
+            var ySnap = Snap.snapTo(gridSize, orig.y + dy, 100000000);
+            this.attr({
+                x: xSnap,
+                y: ySnap
+            });
+        },
+        function (x, y, e) {
+            orig.x = e.toElement.x.baseVal.value;
+            orig.y = e.toElement.y.baseVal.value;
+        });
+    }
+    </script>
+  </head>
+  <body>
+    <svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg"></svg>
+  </body>
 </html>

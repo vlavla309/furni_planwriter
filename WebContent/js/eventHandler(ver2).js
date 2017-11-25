@@ -36,6 +36,7 @@ function dragStart(x,y,e) {
 	target=this;
 	ox=0;
 	oy=0;
+	clonePath.remove();
 
 }
 
@@ -52,13 +53,15 @@ function dragMove(dx, dy, x, y, e) {
 	//tstr=target.transform().toString();
 	console.log("("+dx+", "+dy+")"+" ("+x+", "+y+")");
 	
-	console.log(target.getBBox());
 	
-	this.attr({
+	cloneRect=this[0].clone();
+	cloneRect.attr({
 		transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
 	});
+	clonePath=getPath(cloneRect);
 	
-	var direction = isCollisionOfWall(target.getBBox());
+	var direction=isCollisionOfWall(clonePath);
+	//console.log(direction);
 	
 	var pos=[mx, my];
 	if(direction=="both"){
@@ -79,6 +82,8 @@ function dragMove(dx, dy, x, y, e) {
 	this.attr({
 		transform: origTransform + (origTransform ? "T" : "t") + pos
 	});
+	//clonePath.remove();
+	cloneRect.remove();
 }
 
 function dragDrop(x,y) {
@@ -91,6 +96,9 @@ function dragDrop(x,y) {
 			transform: origTransform
 		});
 	}
+	
+	//cloneRect.remove();
+	
 	
 	curEditor.canvas.paper.zpd('toggle');
 }
@@ -157,43 +165,23 @@ function isCollisionOfFurnitures(target){
 }
 
 function isCollisionOfWall(target){
-	var north;
-	var east;
-	var south;
-	var west;
-	
-	
-		var wallBbox=curEditor.wallNorth.getBBox();
-		north =Snap.path.isBBoxIntersect(bbox, target);
-		
-		wallBbox=curEditor.wallEast.getBBox();
-		east =Snap.path.isBBoxIntersect(bbox, target);
-		
-		wallBbox=curEditor.wallSouth.getBBox();
-		south =Snap.path.isBBoxIntersect(bbox, target);
-		
-		wallBbox=curEditor.wallWest.getBBox();
-		west =Snap.path.isBBoxIntersect(bbox, target);
-		
-		
-		
-	if(!north && !east && !south && !west)return "none";
-	else if(east && south && west)return "n";
-	else if(north && south && west)return "e";
-	else if(north && east &&  west)return "s";
-	else if(north && east && south)return "w";
+	var countHorizon=0;
+	var countVertical=0;
+	curEditor.wallHorizon.forEach(function(elem, i) {
+		countHorizon += Snap.path.intersection(elem, target).length;
+	});
 
-	/*curEditor.wallVertical.forEach(function(elem, i) {
+	curEditor.wallVertical.forEach(function(elem, i) {
 		countVertical += Snap.path.intersection(elem, target).length;
 	});
 	
 	//console.log("벽" +countHorizon+ " " +countVertical);
 	
-	if(v ==0 && h==0)return "both";
+	if(countHorizon==0 && countVertical==0)return "both";
 	else if(countHorizon != 0 && countVertical == 0)return "horizon";
 	else if(countVertical != 0 && countHorizon == 0)return "vertical";
-	*/
-	return "both";
+	
+	return "none";
 }
 
 

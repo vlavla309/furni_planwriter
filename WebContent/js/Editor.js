@@ -7,6 +7,10 @@ function Editor( ){
 	this.furnitures;
 	this.wallHorizon;
 	this.wallVertical;
+	this.wallNorth;
+	this.wallEast;
+	this.wallSouth;
+	this.wallWest;
 	this.scale=1;
 	this.offsetX=80;
 	this.offsetY=80;
@@ -68,8 +72,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+x+" "+y;
 
-	var wallNorth=this.canvas.path(pathStr);
-	this.wallHorizon.push(wallNorth);
+	this.wallNorth=this.canvas.path(pathStr);
+	this.wallHorizon.push(this.wallNorth);
 
 	//동쪽 벽
 	pathStr =" M"+(x+w)+" "+y;
@@ -78,8 +82,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x+w+wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+(x+w)+" "+y;
 	
-	var wallEast=this.canvas.path(pathStr);
-	this.wallVertical.push(wallEast);
+	this.wallEast=this.canvas.path(pathStr);
+	this.wallVertical.push(this.wallEast);
 	
 	//남쪽 벽
 	pathStr="M"+x+" "+(y+h);
@@ -88,8 +92,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y+h+wallWidth);
 	pathStr+=" L"+x+" "+(y+h);
 	
-	var wallSouth=this.canvas.path(pathStr);
-	this.wallHorizon.push(wallSouth);
+	this.wallSouth=this.canvas.path(pathStr);
+	this.wallHorizon.push(this.wallSouth);
 	
 	
 	//서쪽 벽
@@ -99,8 +103,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+x+" "+y;
 	
-	var wallWest=this.canvas.path(pathStr);
-	this.wallVertical.push(wallWest);
+	this.wallWest=this.canvas.path(pathStr);
+	this.wallVertical.push(this.wallWest);
 	
 	
 	
@@ -118,11 +122,7 @@ Editor.prototype.room = function(width,height,length){
 		strokeOpacity : 0.9
 	});
 	
-	walls=this.canvas.g(wallNorth,wallEast,wallSouth,wallWest);
-
-	var bbox=path.getBBox();
-
-	//console.log(bbox);
+	walls=this.canvas.g(this.wallNorth,this.wallEast,this.wallSouth,this.wallWest);
 }
 
 /* 배치도에 새 가구 생성 */

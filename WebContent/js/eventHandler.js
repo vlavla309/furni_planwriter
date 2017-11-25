@@ -42,46 +42,65 @@ function dragStart(x,y,e) {
 function dragMove(dx, dy, x, y, e) {
 	//setTimeout(function() {}, 15000);
 	var m = selectedViewbox.transform().localMatrix; 
-	var mx=dx;
-	var my=dy;
+	mx=dx;
+	my=dy;
 	if(m){
 		mx = dx/m.a;
 		my = dy/m.d;
 	};
 	
 	//tstr=target.transform().toString();
-	console.log("("+dx+", "+dy+")"+" ("+x+", "+y+")");
+	//console.log("("+dx+", "+dy+")"+" ("+x+", "+y+")");
 	
-	console.log(target.getBBox());
 	
-	this.attr({
-		transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
-	});
 	
-	var direction = isCollisionOfWall(target.getBBox());
 	
+	dir = isCollisionOfWall(target.getBBox());
+	var n=dir[0];
+	var e=dir[1];
+	var s=dir[2];
+	var w=dir[3];
+	console.log(dir);
+	
+	if(n&&s)my=oy;
+	else if(n){
+		if(my<0)my=oy;
+	}else if(s){
+		if(my>0)my=oy;
+	}
+	
+	if(e&&w)mx=ox;
+	else if(e){
+		if(mx>0)mx=ox;
+	}else if(w){
+		if(mx<0)mx=ox;
+	}
 	var pos=[mx, my];
-	if(direction=="both"){
-		pos=[mx, my];
-		ox=mx;
-		oy=my;
-	}else if(direction=="horizon"){
-		pos=[mx, oy];
-		ox=mx;
-	}
-	else if(direction=="vertical"){
-		pos=[ox, my];
-		oy=my;
-	}else {
-		pos=[ox, oy];
-	}
-	
+		
 	this.attr({
 		transform: origTransform + (origTransform ? "T" : "t") + pos
 	});
+	
+	ox=mx;
+	oy=my;
 }
 
 function dragDrop(x,y) {
+	/*adjust inside walls*/
+	while(dir[0] || dir[1] || dir[2] || dir[3]){
+		if(dir[0])my++;
+		if(dir[1])mx--;
+		if(dir[2])my--;
+		if(dir[3])mx++;
+		
+		target.attr({
+			transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
+		});
+		dir = isCollisionOfWall(target.getBBox());
+	}
+	
+	
+	
 	/*collision check*/
 	var collisionFurnitures=isCollisionOfFurnitures(target);
 
@@ -163,26 +182,29 @@ function isCollisionOfWall(target){
 	var west;
 	
 	
-		var wallBbox=curEditor.wallNorth.getBBox();
+	console.log(curEditor.wallNorth);
+		var bbox=curEditor.wallNorth.getBBox();
 		north =Snap.path.isBBoxIntersect(bbox, target);
 		
-		wallBbox=curEditor.wallEast.getBBox();
+		bbox=curEditor.wallEast.getBBox();
 		east =Snap.path.isBBoxIntersect(bbox, target);
 		
-		wallBbox=curEditor.wallSouth.getBBox();
+		bbox=curEditor.wallSouth.getBBox();
 		south =Snap.path.isBBoxIntersect(bbox, target);
 		
-		wallBbox=curEditor.wallWest.getBBox();
+		bbox=curEditor.wallWest.getBBox();
 		west =Snap.path.isBBoxIntersect(bbox, target);
 		
+	return [north, east, south, west];	
 		
-		
-	if(!north && !east && !south && !west)return "none";
+	if(north && east && south && west)return "none";
 	else if(east && south && west)return "n";
 	else if(north && south && west)return "e";
-	else if(north && east &&  west)return "s";
+	else if(north && east && west)return "s";
 	else if(north && east && south)return "w";
 
+	
+	
 	/*curEditor.wallVertical.forEach(function(elem, i) {
 		countVertical += Snap.path.intersection(elem, target).length;
 	});

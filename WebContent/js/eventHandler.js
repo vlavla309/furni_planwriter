@@ -203,30 +203,8 @@ function isCollisionOfWall(target){
 	else if(north && east && west)return "s";
 	else if(north && east && south)return "w";
 
-	
-	
-	/*curEditor.wallVertical.forEach(function(elem, i) {
-		countVertical += Snap.path.intersection(elem, target).length;
-	});
-	
-	//console.log("벽" +countHorizon+ " " +countVertical);
-	
-	if(v ==0 && h==0)return "both";
-	else if(countHorizon != 0 && countVertical == 0)return "horizon";
-	else if(countVertical != 0 && countHorizon == 0)return "vertical";
-	*/
 	return "both";
 }
-
-
-
-
-
-
-
-
-
-
 
 
 /* Get Path by Element*/

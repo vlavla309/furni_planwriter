@@ -5,7 +5,8 @@ function Editor( ){
 	this.canvas;
 	this.room;
 	this.furnitures;
-	this.walls;
+	this.wallHorizon;
+	this.wallVertical;
 	this.scale=1;
 	this.offsetX=80;
 	this.offsetY=80;
@@ -26,11 +27,12 @@ Editor.prototype.init = function (id){
      // Zpd 플러그인 초기화
      applyZpd();
      
-     //배치된 가구리스트 그룹
+     //배치된 가구리스트 집합
      this.furnitures=Snap.set();
      
-     //배치된 가구리스트 그룹
-     this.walls=Snap.set();
+     //벽 집합
+     this.wallHorizon=Snap.set();
+     this.wallVertical=Snap.set();
      
 }
 
@@ -42,13 +44,7 @@ Editor.prototype.room = function(width,height,length){
 	var w=width*this.scale;
 	var h=height*this.scale;
 	var wallWidth=14*this.scale;
-	/*
-	var rect = this.canvas.rect(x, y, w, h).attr({
-		"fill": "none",
-		stroke: "#5D5D5D",
-		strokeWidth: 0
-	});
-	*/
+
 	var pathStr="M"+x+" "+y;
 	pathStr+=" L"+(x+w)+" "+y;
 	pathStr+=" L"+(x+w)+" "+(y+h);
@@ -72,10 +68,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+x+" "+y;
 
-	var wallNorth=this.canvas.path(pathStr).attr({
-		fill : horizonGradient,
-	});
-	this.walls.push(wallNorth);
+	var wallNorth=this.canvas.path(pathStr);
+	this.wallHorizon.push(wallNorth);
 
 	//동쪽 벽
 	pathStr =" M"+(x+w)+" "+y;
@@ -84,10 +78,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x+w+wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+(x+w)+" "+y;
 	
-	var wallEast=this.canvas.path(pathStr).attr({
-		fill : verticalGradient,
-	});;
-	this.walls.push(wallEast);
+	var wallEast=this.canvas.path(pathStr);
+	this.wallVertical.push(wallEast);
 	
 	//남쪽 벽
 	pathStr="M"+x+" "+(y+h);
@@ -96,10 +88,8 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y+h+wallWidth);
 	pathStr+=" L"+x+" "+(y+h);
 	
-	var wallWest=this.canvas.path(pathStr).attr({
-		fill : horizonGradient,
-	});
-	this.walls.push(wallWest);
+	var wallSouth=this.canvas.path(pathStr);
+	this.wallHorizon.push(wallSouth);
 	
 	
 	//서쪽 벽
@@ -109,17 +99,27 @@ Editor.prototype.room = function(width,height,length){
 	pathStr+=" L"+(x-wallWidth)+" "+(y-wallWidth);
 	pathStr+=" L"+x+" "+y;
 	
-	var wallWest=this.canvas.path(pathStr).attr({
+	var wallWest=this.canvas.path(pathStr);
+	this.wallVertical.push(wallWest);
+	
+	
+	
+	this.wallVertical.attr({
 		fill : verticalGradient,
-	});
-	this.walls.push(wallWest);
-	
-	
-	this.walls.attr({
 		stroke: "#666",
 		strokeWidth: 0.5,
 		strokeOpacity : 0.9
 	});
+	
+	this.wallHorizon.attr({
+		fill : horizonGradient,
+		stroke: "#666",
+		strokeWidth: 0.5,
+		strokeOpacity : 0.9
+	});
+	
+	walls=this.canvas.g(wallNorth,wallEast,wallSouth,wallWest);
+
 	var bbox=path.getBBox();
 
 	//console.log(bbox);
@@ -128,8 +128,8 @@ Editor.prototype.room = function(width,height,length){
 /* 배치도에 새 가구 생성 */
 Editor.prototype.furniture= function(x,y,type, productId){
 		var furniture;
-		var rect=this.canvas.rect(x, y, 157*this.scale, 213*this.scale).attr("fill", "none");
-		var image=this.canvas.image("images/bed.png", x, y ,157*this.scale, 213*this.scale);
+		var rect=this.canvas.rect(x, y, 100*this.scale, 213*this.scale).attr("fill", "none");
+		var image=this.canvas.image("images/bed.png", x, y ,100*this.scale, 213*this.scale);
 		
 		furniture=this.canvas.g(rect,image).attr({
 			stroke: "#6799FF",

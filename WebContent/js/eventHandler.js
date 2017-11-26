@@ -27,7 +27,6 @@ function hOut(){
 }
 
 
-
 /*------------- 드래그 이벤트 핸들러 시작!--------------*/
 function dragStart(x,y,e) {
 	curEditor.canvas.paper.zpd('toggle');
@@ -36,11 +35,9 @@ function dragStart(x,y,e) {
 	target=this;
 	ox=0;
 	oy=0;
-
 }
 
 function dragMove(dx, dy, x, y, e) {
-	//setTimeout(function() {}, 15000);
 	var m = selectedViewbox.transform().localMatrix; 
 	mx=dx;
 	my=dy;
@@ -49,12 +46,7 @@ function dragMove(dx, dy, x, y, e) {
 		my = dy/m.d;
 	};
 	
-	//tstr=target.transform().toString();
-	//console.log("("+dx+", "+dy+")"+" ("+x+", "+y+")");
-	
-	
-	
-	
+	//드래그 대상이 벽과 충돌인지 체크
 	dir = isCollisionOfWall(target.getBBox());
 	var n=dir[0];
 	var e=dir[1];
@@ -77,9 +69,7 @@ function dragMove(dx, dy, x, y, e) {
 	}
 	var pos=[mx, my];
 		
-	this.attr({
-		transform: origTransform + (origTransform ? "T" : "t") + pos
-	});
+	this.attr({transform: origTransform + (origTransform ? "T" : "t") + pos});
 	
 	ox=mx;
 	oy=my;
@@ -93,9 +83,7 @@ function dragDrop(x,y) {
 		if(dir[2])my--;
 		if(dir[3])mx++;
 		
-		target.attr({
-			transform: origTransform + (origTransform ? "T" : "t") + [mx, my]
-		});
+		target.attr({transform: origTransform + (origTransform ? "T" : "t") + [mx, my]});
 		dir = isCollisionOfWall(target.getBBox());
 	}
 	

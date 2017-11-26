@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-
-
 *{
 	font-size:16px;
 	margin : 0;
@@ -94,7 +92,8 @@ a{
 	border: 1px solid black;
 	background :white;
 	margin:1em;
-	max-width:120px;
+	padding:0.5em;
+	width:120px;
 	max-height:90px;
 }
 
@@ -103,12 +102,19 @@ a{
 	float:left;
 }
 
+#newPlanBtn{
+	padding:0;
+	background:none;
+	border:none;
+	display:block;
+	margin:auto;
+}
+
 #rightSidebarWrap{
 	height:100%;
 	position:fixed;
 	right:0px;
 }
-
 
 #rightToggle{
 	height:100%;
@@ -122,17 +128,49 @@ a{
 	color :white;
 }
 
-
-
-
 #rightTabs{
 	float:right;
 }
 
 .tabContent{
-	max-height: 30em;
+	heigth:100%;
 	min-height: 30em;
 	overflow: auto;
+}
+
+.productWrap{
+	margin:auto;
+	border:1px solid black;
+}
+
+.product{
+	border:1px solid black;
+	margin:auto;
+	margin-bottom:1em;
+	width:250px;
+	display:flex;
+}
+
+.product .imgWrap{
+	width:120px;
+	height:120px;
+	margin-bottom:0.3em;
+	
+}
+
+.product .imgWrap img{
+	margin:auto;
+	height:100%;
+	width:auto;
+	display:block;
+}
+
+.product .infoWrap{
+	border:1px solid black;
+}
+
+.product .infoWrap span{
+	display:block;
 }
 
 #editorWrap{

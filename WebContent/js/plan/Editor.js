@@ -18,12 +18,12 @@ function Editor( ){
 
 
 /* 배치도 객체 초기화 */
-Editor.prototype.init = function (id){
+Editor.prototype.init = function (id, zoomScale){
 	this.canvas = Snap("#editorContainer-"+id+" .editor");
 	var paper = (this.canvas).paper;
 	 var applyZpd = function() {
 		 paper.zpd({
-			 zoomscale : 0.2,
+			 zoomscale : zoomScale,
 			 zoomThreshold: [0.4, 1.8],
 			 drag: false
 		 });
@@ -122,7 +122,7 @@ Editor.prototype.room = function(width,height,length){
 		strokeOpacity : 0.9
 	});
 	
-	walls=this.canvas.g(this.wallNorth,this.wallEast,this.wallSouth,this.wallWest);
+	walls=this.canvas.g(path, image, this.wallNorth,this.wallEast,this.wallSouth,this.wallWest);
 }
 
 /* 배치도에 새 가구 생성 */

@@ -83,6 +83,7 @@ a{
 
 #planitemTabs{
 	background:white;
+	min-width:150px;
 	height:100%;
 	box-shadow: 0 -1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
 	/* display:none; */	
@@ -196,5 +197,9 @@ a{
 	width:100%;
 	bottom:0px;
 	position:fixed;
-	background-color:blue;
+	background:blue;
+}
+
+#furnitureInfoWrap{
+	border : 1px solid black;
 }

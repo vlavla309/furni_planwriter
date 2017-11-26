@@ -7,24 +7,22 @@
 
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="stylesheet/style.css">
-<link rel="stylesheet" type="text/css" href="stylesheet/writer.css">
 <link rel="stylesheet" type="text/css" href="stylesheet/jquery-ui.css">
   
 <!-- Javascript -->
 <script type="text/javascript" src="js/jquery-1.12.4.js"></script>
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script type="text/javascript" src="js/planwriter.js"></script>
+<script type="text/javascript" src="js/plan/snap.svg-min.js"></script>
+<script type="text/javascript" src="js/plan/snap.svg.zpd.js"></script>
 
-<script type="text/javascript" src="js/snap.svg.js"></script>
-
-<script type="text/javascript" src="js/snap.svg.zpd.js"></script>
-<script type="text/javascript" src="js/calc.js"></script>
-<script type="text/javascript" src="js/Coordinate.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
-<script type="text/javascript" src="js/eventRegist.js"></script>
-<script type="text/javascript" src="js/eventHandler.js"></script>
-<script type="text/javascript" src="js/Editor.js"></script>
+<script type="text/javascript" src="js/plan/planwriter.js"></script>
+<script type="text/javascript" src="js/plan/function.js"></script>
+<script type="text/javascript" src="js/plan/eventRegist.js"></script>
+<script type="text/javascript" src="js/plan/eventHandler.js"></script>
+<script type="text/javascript" src="js/plan/Editor.js"></script>
+<script type="text/javascript" src="js/plan/Coordinate.js"></script>
+<script type="text/javascript" src="js/plan/calc.js"></script>
 
 
 
@@ -41,12 +39,7 @@
 				<ul id="headerMenuLeft">
 					<li><a id=saveBtn href="#">저장</a></li>
 					<li><a href="#">menu2</a></li>
-					<li><a href="#">menu3</a></li>
-					<li><a href="#">menu4</a></li>
 					<li><a id=crtBtn href="#">침대하나</a></li>
-					<li><a id=rotateBtn href="#">회전</a></li>
-					<li><a id=deleteBtn href="#">삭제</a></li>
-					
 				</ul>
 				
 				<ul id="headerMenuRight">
@@ -63,7 +56,7 @@
 					<div id="planitemTabs">
 				       <ul id="planitems">
 				       <!-- 샘플 ㅎㅎ -->
-						<li><div class='planitem'><a href='1'>내방</a></div></li>
+						<!-- <li><div class='planitem'><a href='1'>내방</a></div></li> -->
 					  </ul>
 					 <!-- <button id="newPlanBtn">Add Plan</button> -->
 					 <a href="#" id="newPlanBtn"><img src="images/plus.png" width=50px;></a>
@@ -96,7 +89,7 @@
 							<!-- 상품 목록 -->
 								<div class="product">
 									<div class="imgWrap">
-									<img src="images/bed.png"/>
+									<a href="1"><img src="images/bed.png"/></a>
 									</div>
 									<div class="infoWrap">
 										<span>상품명</span>
@@ -114,7 +107,7 @@
 							<!-- 상품 목록 -->
 								<div class="product">
 									<div class="imgWrap">
-									<img src="images/bed.png"/>
+									<a href="1"><img src="images/bed.png"/></a>
 									</div>
 									<div class="infoWrap">
 										<span>상품명</span>
@@ -132,7 +125,7 @@
 							<!-- 상품 목록 -->
 								<div class="product">
 									<div class="imgWrap">
-									<img src="images/bed.png"/>
+									<a href="1"><img src="images/bed.png"/></a>
 									</div>
 									<div class="infoWrap">
 										<span>상품명</span>
@@ -170,13 +163,25 @@
 
 	<!-- footer 시작 -->
 	<div id="footer">
-		여기는 풋터
-		<div id="furnitureInfoWrap">
-		<div>
-		
+			<div id="furnitureInfoWrap">
+				<div class="imgWrap">
+					<img src="images/bed.png" />
+				</div>
+				<div class="infoWrap">
+					<span>카테고리</span>
+					<span>상품명</span> 
+					<span>브랜드</span> 
+					<span>200x200x200</span>
+				</div>
+				<div class="controlWrap">
+					<ul>
+						<li><a href="#" id="clockwiseRotateBtn">시계방향 회전</a></li>
+						<li><a href="#" id="counterclockwiseRotateBtn">시계반대방향 회전</a></li>
+						<li><a href="#" id="deleteBtn">삭제</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
-		</div>
-	</div>
 	<!-- footer 끝 -->
 	
 	

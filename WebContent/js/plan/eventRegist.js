@@ -10,9 +10,13 @@ $( document ).ready(function(){
 		curEditor.furniture(curEditor.offsetX, curEditor.offsetY,"bed", 2039);
 	});
 
-	$("#rotateBtn").on("click", function(){
-		var r=$("#radius").val();
-		if(!r)r=45;
+	$("#clockwiseRotateBtn").on("click", function(){
+		var r=45;
+		if(selectedElem)rotate(selectedElem, r);
+	});
+	
+	$("#counterclockwiseRotateBtn").on("click", function(){
+		var r=-45;
 		if(selectedElem)rotate(selectedElem, r);
 	});
 	

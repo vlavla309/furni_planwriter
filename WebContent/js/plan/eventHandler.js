@@ -45,22 +45,22 @@ function dragMove(dx, dy, x, y, e) {
 		mx = dx/m.a;
 		my = dy/m.d;
 	};
-	
+
 	//드래그 대상이 벽과 충돌인지 체크
 	dir = isCollisionOfWall(target.getBBox());
 	var n=dir[0];
 	var e=dir[1];
 	var s=dir[2];
 	var w=dir[3];
-	console.log(dir);
-	
+	//console.log(dir);
+
 	if(n&&s)my=oy;
 	else if(n){
 		if(my<0)my=oy;
 	}else if(s){
 		if(my>0)my=oy;
 	}
-	
+
 	if(e&&w)mx=ox;
 	else if(e){
 		if(mx>0)mx=ox;
@@ -68,9 +68,9 @@ function dragMove(dx, dy, x, y, e) {
 		if(mx<0)mx=ox;
 	}
 	var pos=[mx, my];
-		
+
 	this.attr({transform: origTransform + (origTransform ? "T" : "t") + pos});
-	
+
 	ox=mx;
 	oy=my;
 }
@@ -82,13 +82,13 @@ function dragDrop(x,y) {
 		if(dir[1])mx--;
 		if(dir[2])my--;
 		if(dir[3])mx++;
-		
+
 		target.attr({transform: origTransform + (origTransform ? "T" : "t") + [mx, my]});
 		dir = isCollisionOfWall(target.getBBox());
 	}
-	
-	
-	
+
+
+
 	/*collision check*/
 	var collisionFurnitures=isCollisionOfFurnitures(target);
 
@@ -98,7 +98,7 @@ function dragDrop(x,y) {
 			transform: origTransform
 		});
 	}
-	
+
 	curEditor.canvas.paper.zpd('toggle');
 }
 /*------------- 드래그 이벤트 핸들러 끝!--------------*/
@@ -138,7 +138,7 @@ function hasCollision(target, set){
 }
 /* Check. Is Collision of Furnitures */
 function isCollisionOfFurnitures(target){
-	console.log(target);
+	//console.log(target);
 	var result=false;
 	var pathTarget=getPath(target);
 
@@ -168,23 +168,23 @@ function isCollisionOfWall(target){
 	var east;
 	var south;
 	var west;
-	
-	
-	console.log(curEditor.wallNorth);
-		var bbox=curEditor.wallNorth.getBBox();
-		north =Snap.path.isBBoxIntersect(bbox, target);
-		
-		bbox=curEditor.wallEast.getBBox();
-		east =Snap.path.isBBoxIntersect(bbox, target);
-		
-		bbox=curEditor.wallSouth.getBBox();
-		south =Snap.path.isBBoxIntersect(bbox, target);
-		
-		bbox=curEditor.wallWest.getBBox();
-		west =Snap.path.isBBoxIntersect(bbox, target);
-		
+
+
+
+	var bbox=curEditor.wallNorth.getBBox();
+	north =Snap.path.isBBoxIntersect(bbox, target);
+
+	bbox=curEditor.wallEast.getBBox();
+	east =Snap.path.isBBoxIntersect(bbox, target);
+
+	bbox=curEditor.wallSouth.getBBox();
+	south =Snap.path.isBBoxIntersect(bbox, target);
+
+	bbox=curEditor.wallWest.getBBox();
+	west =Snap.path.isBBoxIntersect(bbox, target);
+
 	return [north, east, south, west];	
-		
+
 	if(north && east && south && west)return "none";
 	else if(east && south && west)return "n";
 	else if(north && south && west)return "e";
@@ -233,7 +233,7 @@ function rect2Path(target){
 	var path=curEditor.canvas.path(pathStr).attr({
 		fill : "none",
 		stroke:"#888"
-		//fill : "#000"
+			//fill : "#000"
 	});
 
 	return path;
@@ -262,7 +262,7 @@ function g2Path(target){
 	var path=curEditor.canvas.path(pathStr).attr({
 		fill : "none",
 		stroke:"#888"
-		//fill : "#000"
+			//fill : "#000"
 	});
 
 	return path;

@@ -111,7 +111,7 @@ function addPlanItem(){
 	$("#editorWrap").append(planStr);
 	
 	var editor=new Editor();
-	editor.init(id);
+	editor.init(id, ZOOM_SCALE);
 	editors.set(id, editor);
 	var width=$("#planWidth").val();
 	var height=$("#planHeight").val();

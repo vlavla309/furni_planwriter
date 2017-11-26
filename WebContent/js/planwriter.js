@@ -2,14 +2,15 @@
  */
 var ZOOM_SCALE=0.2; //0.2배씩
 
-var selectedElem;
-var planCount=1;
-var editorList;
-var curEditor;
+
+var selectedElem; //현재 선택된 엘레먼트
+var planCount=1; //작성중인 배치도 ID 시퀀스
+var editors; //작성중인 배치도 편집기 목록
+var curEditor; //현재 작성중인 배치도 편집기
 
 $( function() {
 	//초기화!!!
-	editorList= new Map();
+	editors= new Map();
 	
 	
 	// 새 배치도 작성폼 다이얼로그 
@@ -55,7 +56,7 @@ $( function() {
 		$("#editorContainer-"+pid).addClass("active");
 		
 		var id=parseInt(pid)
-		curEditor=editorList.get(id);
+		curEditor=editors.get(id);
 	});
 	
 	/*----------------------상품 카테고리 탭----------------------*/
@@ -107,13 +108,18 @@ function addPlanItem(){
 	
 	var editor=new Editor();
 	editor.init(id);
-	editorList.set(id, editor);
+	editors.set(id, editor);
 	var width=$("#planWidth").val();
 	var height=$("#planHeight").val();
 	var length=$("#planLength").val();
 	
 	editor.room(width, height, length);
 	return id;
+}
+
+function delPlanItem(id){
+	editors.delete(id);
+	$("#editorContainer-"+id).remove();
 }
 
 function selectPlan(id){

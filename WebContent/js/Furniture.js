@@ -1,11 +1,11 @@
 /**
- * 
+ * 가구 도메인
  */
 
-function Product(id,category,name,brand,color,width,length,height){
+function Furniture(id,category,name,brand,color,width,length,height){
 	this.productId;  // 테이블 column :  product_id 
 	this.category;  // 선반, 쇼파, 식탁, 옷장, 책상, 침대
-	this.name;
+	this.name; //상품명 
 	this.brand;  //일룸, 까사미아, 이케아
 	this.color;  //black, white, braun , walnut, green
 	this.width; //가로

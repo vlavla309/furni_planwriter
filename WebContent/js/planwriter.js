@@ -60,7 +60,7 @@ $( function() {
 	});
 	
 	/*----------------------상품 카테고리 탭----------------------*/
-	$( "#tabs" ).tabs({
+	$( "#rightTabs" ).tabs({
 		beforeLoad: function( event, ui ) {
 			ui.jqXHR.fail(function() {
 				ui.panel.html("페이지 로드불가!!" );
@@ -70,7 +70,7 @@ $( function() {
 	
 	// 상품 카테고리 탭 영역 토글 버튼 이벤트처리
 	$( "#rightToggleBtn" ).on( "click", function() {
-		$( "#tabs" ).toggle("slow", "swing", changeDirection(this));
+		$( "#rightTabs" ).toggle("slow", "swing", changeDirection(this));
 	});
 	/*----------------------상품 카테고리 탭 끝!!!----------------------*/
 	

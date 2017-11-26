@@ -109,6 +109,7 @@ a{
 	border:none;
 	display:block;
 	margin:auto;
+	margin-top:1em;
 }
 
 #rightSidebarWrap{
@@ -122,7 +123,7 @@ a{
 	float:right;
 }
 
-#rightToggleBtn{
+#rightToggleBtn, #leftToggleBtn{
 	padding : 0.5rem;
 	background: #78cae9;
 	border :0;
@@ -200,6 +201,36 @@ a{
 	background:blue;
 }
 
+
 #furnitureInfoWrap{
 	border : 1px solid black;
+	margin : 0.5em;
+	display:flex;
 }
+
+#furnitureInfoWrap *{
+	border : 1px solid black;
+}
+
+
+#furnitureInfoWrap .imgWrap{
+	width:120px;
+	height:120px;
+}
+
+#furnitureInfoWrap .imgWrap img{
+	height:100%;
+	width:auto;
+	margin:auto;
+	display:block;
+}
+
+#furnitureInfoWrap .infoWrap span{
+	display:block;
+}
+
+.controlWrap ul li{
+	list-style: none;
+	display:inline-block;
+}
+

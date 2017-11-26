@@ -122,7 +122,11 @@ Editor.prototype.room = function(width,height,length){
 		strokeOpacity : 0.9
 	});
 	
-	walls=this.canvas.g(path, image, this.wallNorth,this.wallEast,this.wallSouth,this.wallWest);
+	this.room=this.canvas.g(path, image, this.wallNorth,this.wallEast,this.wallSouth,this.wallWest).addClass("room");
+	this.room.click(function(){
+		unSelectAll();
+		select(this);
+	});
 }
 
 /* 배치도에 새 가구 생성 */

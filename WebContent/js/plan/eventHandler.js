@@ -2,15 +2,16 @@
 /*------------- 가구 클릭 이벤트 핸들러 시작!--------------*/
 function select(target){
 	selectedElem=target;
-	selectedViewbox=target.parent().parent(); // 선택된 가구의 뷰박스 획득
-	target.attr({
-		strokeWidth: 4 // CamelCase...
-	}); 
-
-	$("#footer").toggle();
+	
+	if(selectedElem.hasClass("furniture")){
+		selectedViewbox=target.parent().parent(); // 선택된 가구의 뷰박스 획득
+		target.attr({strokeWidth: 4}); 
+		$("#footer").show();
+	}
 }
 
 function unSelectAll(){
+	$("#footer").hide();
 	selectedElem=null;
 	curEditor.furnitures.attr({
 		strokeWidth: 0 // CamelCase...
